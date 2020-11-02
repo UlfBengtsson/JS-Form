@@ -43,8 +43,20 @@ function checkPwd() {
   } else {
     pwdHasUpper = false;
   }
+
+  okToLogin();
+}
+
+function okToLogin() {
+  let submitBtn = document.getElementById("submitBtn");
+
+  if (pwdHasLength && pwdHasDigit && pwdHasLower && pwdHasUpper) {
+    submitBtn.disabled = false;
+  } else {
+    submitBtn.disabled = true;
+  }
 }
 
 //--- Event Listeners --------------------------------------------------------------
 
-pwdInput.addEventListener("keypress", checkPwd);
+pwdInput.addEventListener("keydown", checkPwd); //better to use keydown then keypress then it will not be one step behind the user input.
